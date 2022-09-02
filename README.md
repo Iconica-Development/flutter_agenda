@@ -1,24 +1,20 @@
 [![pub package](https://img.shields.io/pub/v/[PACKAGE NAME ON PUB].svg)](https://github.com/Iconica-Development) [![Build status](https://github.com/Iconica-Development/agenda)](URL TO GITHUB ACTIONS) [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart) 
 
-Short description of what your package is, why you created it. What issues it fixes and how it works. Also mention the available platforms
+# Agenda
+A Flutter package for creating an agenda that displays events per day with an included calendar for picking the date. Multiple events at the same time are alongside each other. There is also the option to stack multiple items at the same time.
+The underlying datepicker widget supports marking dates and disabling dates.
 
-## Setup
 
-What setup steps are neccesarry and why>
 
-<details>
-<summary>PLATFORM</summary>
-    
-specific platform steps
+Supports all Flutter platforms.
 
-</details>
+## Usage
 
-## How to use
+To use this package, add `agenda` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).
 
-How can we use the package descibe the most common ways with examples in 
-```dart
- codeblocks
-``` 
+### Example
+
+See [Example Code](example/lib/main.dart) for more info.
 
 ## Issues
 
