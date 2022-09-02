@@ -66,9 +66,9 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: main
-      resolved-ref: "7a3c66d28c2d29c1983d186435ed559a19fe34ff"
-      url: "https://github.com/Iconica-Development/flutter_date_time_picker"
+      ref: stable
+      resolved-ref: "6b3f1f5d12c1762bc208a1f1a4b9384dcb3369d4"
+      url: "git@github.com:Iconica-Development/flutter_date_time_picker.git"
     source: git
     version: "0.0.1"
   flutter_lints:
@@ -178,7 +178,7 @@ packages:
       path: "."
       ref: "v0.0.2"
       resolved-ref: "62fdaa443818bd646058b536a12304725d1619fd"
-      url: "https://github.com/Iconica-Development/timetable"
+      url: "git@github.com:Iconica-Development/timetable.git"
     source: git
     version: "0.0.1"
   vector_math:

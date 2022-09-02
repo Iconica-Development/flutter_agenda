@@ -14,11 +14,11 @@ dependencies:
     sdk: flutter
   flutter_date_time_picker:
     git:
-      url: https://github.com/Iconica-Development/flutter_date_time_picker
-      ref: main
+      url: git@github.com:Iconica-Development/flutter_date_time_picker.git
+      ref: stable
   timetable:
     git:
-      url: https://github.com/Iconica-Development/timetable
+      url: git@github.com:Iconica-Development/timetable.git
       ref: v0.0.2
 
 dev_dependencies:

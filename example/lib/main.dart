@@ -57,6 +57,10 @@ class AgendaDemo extends StatelessWidget {
               start: DateTime.now().subtract(const Duration(hours: 2)),
               end: DateTime.now().add(const Duration(hours: 1)),
             ),
+            AgendaEvent(
+              start: DateTime.now().add(const Duration(days: 2)),
+              end: DateTime.now().add(const Duration(days: 3)),
+            ),
           ],
           disabledDates: [
             // yesterday

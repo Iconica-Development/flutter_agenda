@@ -5,6 +5,9 @@ import 'package:flutter_date_time_picker/flutter_date_time_picker.dart';
 import 'package:timetable/timetable.dart';
 
 class AgendaWidget extends StatefulWidget {
+  /// [AgendaWidget] is a widget that displays a timetable with events.
+  /// It is stateful and sorts the events based on the selected date.
+  /// All styling can be configured through the [AgendaTheme] class.
   const AgendaWidget({
     required this.blocks,
     this.highlightedDates = const [],
@@ -13,6 +16,7 @@ class AgendaWidget extends StatefulWidget {
     this.header,
     this.scrollController,
     this.scrollPhysics,
+    this.onTapDay,
     this.startHour = 0,
     this.endHour = 24,
     this.hourHeight = 80,
@@ -26,15 +30,22 @@ class AgendaWidget extends StatefulWidget {
   /// Header widget that is displayed above the datepicker.
   final Widget? header;
 
+  /// The blocks that are displayed in the agenda
   final List<AgendaEvent> blocks;
 
+  /// The highlighted dates that are displayed in the agenda
   final List<DateTime> highlightedDates;
 
+  /// The disabled dates that are displayed in the agenda
   final List<DateTime> disabledDates;
 
   /// The date that is initially selected.
   final DateTime? initialDate;
 
+  /// Function called when the user taps on a day in the datepicker.
+  final Function(DateTime)? onTapDay;
+
+  /// Whether to highlight the current date in the agenda.
   final bool highlightToday;
 
   /// Hour at which the timetable starts.
@@ -67,7 +78,7 @@ class AgendaWidget extends StatefulWidget {
 }
 
 class _AgendaWidgetState extends State<AgendaWidget> {
-  DateTime? _selectedDate;
+  late DateTime _selectedDate;
 
   @override
   void initState() {
@@ -77,9 +88,7 @@ class _AgendaWidgetState extends State<AgendaWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // filter out the blocks that are not on the selected date.
-    var events =
-        widget.blocks.where((block) => block.start.day == _selectedDate?.day);
+    var events = _filterEventsOnDay(widget.blocks, _selectedDate);
     return DateTimePicker(
       initialDate: _selectedDate,
       pickTime: false,
@@ -101,28 +110,43 @@ class _AgendaWidgetState extends State<AgendaWidget> {
         hourHeight: widget.hourHeight,
         startHour: widget.startHour,
         endHour: widget.endHour,
-        timeBlocks: events.isEmpty
-            ? []
-            : events
-                .map(
-                  (e) => TimeBlock(
-                    start: TimeOfDay(
-                      hour: e.start.hour,
-                      minute: e.start.minute,
-                    ),
-                    end: TimeOfDay(
-                      hour: e.end.hour,
-                      minute: e.end.minute,
-                    ),
-                    id: e.id ?? 0,
-                    child: e.content,
-                  ),
-                )
-                .toList(),
+        timeBlocks: events,
         theme: widget.theme.tableTheme,
         combineBlocks: true,
         mergeBlocks: true,
       ),
     );
+  }
+
+  List<TimeBlock> _filterEventsOnDay(List<AgendaEvent> events, DateTime day) {
+    return events
+        .where(
+          (e) =>
+              (e.start.day == day.day &&
+                  e.start.month == day.month &&
+                  e.start.year == day.year) ||
+              (e.end.day == day.day &&
+                  e.end.month == day.month &&
+                  e.end.year == day.year),
+        )
+        .map(
+          (e) => TimeBlock(
+            start: (e.start.day != day.day)
+                ? TimeOfDay(hour: widget.startHour, minute: 0)
+                : TimeOfDay(
+                    hour: e.start.hour,
+                    minute: e.start.minute,
+                  ),
+            end: (e.end.day != day.day)
+                ? TimeOfDay(hour: widget.endHour, minute: 0)
+                : TimeOfDay(
+                    hour: e.end.hour,
+                    minute: e.end.minute,
+                  ),
+            id: e.id ?? 0,
+            child: e.content,
+          ),
+        )
+        .toList();
   }
 }
