@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Iconica
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 import 'package:agenda/src/models/agenda_event.dart';
 import 'package:agenda/src/models/agenda_theme.dart';
 import 'package:flutter/material.dart';
