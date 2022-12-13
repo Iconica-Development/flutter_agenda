@@ -66,11 +66,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: stable
-      resolved-ref: "6b3f1f5d12c1762bc208a1f1a4b9384dcb3369d4"
-      url: "git@github.com:Iconica-Development/flutter_date_time_picker.git"
+      ref: "2.2.1"
+      resolved-ref: "6c78d4d73fa61ac4e2b103c821edf474421f81b4"
+      url: "https://github.com/Iconica-Development/flutter_date_time_picker"
     source: git
-    version: "0.0.1"
+    version: "2.2.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -176,11 +176,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "v0.0.2"
-      resolved-ref: "62fdaa443818bd646058b536a12304725d1619fd"
-      url: "git@github.com:Iconica-Development/timetable.git"
+      ref: "1.0.0"
+      resolved-ref: dada4ea9a440bcfe58a235dfd93798e4d5ce857a
+      url: "https://github.com/Iconica-Development/flutter_timetable"
     source: git
-    version: "0.0.1"
+    version: "0.0.2"
   vector_math:
     dependency: transitive
     description:

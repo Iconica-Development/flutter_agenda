@@ -93,7 +93,7 @@ class _AgendaWidgetState extends State<AgendaWidget> {
   @override
   Widget build(BuildContext context) {
     var events = _filterEventsOnDay(widget.blocks, _selectedDate);
-    return DateTimePicker(
+    return DragDownDateTimePicker(
       initialDate: _selectedDate,
       pickTime: false,
       highlightToday: widget.highlightToday,
@@ -110,8 +110,6 @@ class _AgendaWidgetState extends State<AgendaWidget> {
         scrollPhysics: widget.scrollPhysics,
         scrollController: widget.scrollController,
         blockColor: widget.blockColor,
-        blockWidth: widget.blockWidth,
-        hourHeight: widget.hourHeight,
         startHour: widget.startHour,
         endHour: widget.endHour,
         timeBlocks: events,
