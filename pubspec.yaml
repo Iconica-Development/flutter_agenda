@@ -1,7 +1,7 @@
-name: agenda
-description: Agenda widget with timetable
-version: 0.0.1
-homepage: https://github.com/Iconica-Development/agenda
+name: flutter_agenda
+description: Agenda widget with an underlying timetable included
+version: 1.0.0
+homepage: https://github.com/Iconica-Development/flutter_agenda
 
 publish_to: none
 
