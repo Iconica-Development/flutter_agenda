@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:agenda/agenda.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_agenda/flutter_agenda.dart';
 
 void main() {
   runApp(
@@ -25,7 +25,7 @@ class AgendaDemo extends StatelessWidget {
           'Agenda',
           style: Theme.of(context).textTheme.headline6,
         ),
-        blockWidth: 50,
+        blockDimension: 50,
         highlightToday: false,
         blocks: [
           AgendaEvent(

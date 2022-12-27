@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:agenda/src/models/agenda_event.dart';
-import 'package:agenda/src/models/agenda_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_agenda/src/models/agenda_event.dart';
+import 'package:flutter_agenda/src/models/agenda_theme.dart';
 import 'package:flutter_date_time_picker/flutter_date_time_picker.dart';
 import 'package:timetable/timetable.dart';
 
@@ -14,25 +14,42 @@ class AgendaWidget extends StatefulWidget {
   /// All styling can be configured through the [AgendaTheme] class.
   const AgendaWidget({
     required this.blocks,
+    this.tableDirection = Axis.vertical,
+    this.size,
     this.highlightedDates = const [],
     this.disabledDates = const [],
     this.initialDate,
+    this.alwaysUse24HourFormat,
     this.header,
+    this.childIfEmptyRoster,
     this.scrollController,
     this.scrollPhysics,
     this.onTapDay,
+    this.tableTopPadding = 0,
+    this.datePickerExpansion = 0,
     this.startHour = 0,
     this.endHour = 24,
-    this.hourHeight = 80,
+    this.hourDimension = 80,
     this.highlightToday = true,
-    this.blockWidth = 50,
+    this.updateEmptyChildPosition = true,
+    this.blockDimension = 50,
     this.blockColor = const Color(0x80FF0000),
     this.theme = const AgendaTheme(),
     super.key,
   });
 
+  /// The [Axis] along which the timetable markings are lined out
+  final Axis tableDirection;
+
   /// Header widget that is displayed above the datepicker.
   final Widget? header;
+
+  /// The Widget displayed instead of the timetable when no events are available
+  final Widget? childIfEmptyRoster;
+
+  /// Whether to change the position of the Empty Child Widget
+  /// when the datepicker is opened
+  final bool updateEmptyChildPosition;
 
   /// The blocks that are displayed in the agenda
   final List<AgendaEvent> blocks;
@@ -58,11 +75,21 @@ class AgendaWidget extends StatefulWidget {
   /// Hour at which the timetable ends.
   final int endHour;
 
-  /// The heigh of one hour in the timetable.
-  final double hourHeight;
+  /// The amount of pixels above the timetable
+  final double tableTopPadding;
 
-  /// The width of the agendaItem if there is no child
-  final double blockWidth;
+  /// The extra height of the datePicker when it is expanded
+  final double datePickerExpansion;
+
+  /// [bool] to set the clock on [TimePickerDialog] to a fixed 24 format.
+  /// By default this gets determined by the settings on the user device.
+  final bool? alwaysUse24HourFormat;
+
+  /// The dimension in pixels of one hour in the timetable.
+  final double hourDimension;
+
+  /// The dimension in pixels of the rosterItem if there is no child
+  final double blockDimension;
 
   /// The color of the agendaItem if there is no child
   final Color blockColor;
@@ -70,6 +97,9 @@ class AgendaWidget extends StatefulWidget {
   /// The theme used by the agenda.
   /// The [TableTheme] used by the timetable is included.
   final AgendaTheme theme;
+
+  /// The [Size] of the timetable.
+  final Size? size;
 
   /// The scroll controller to control the scrolling of the timetable.
   final ScrollController? scrollController;
@@ -83,6 +113,7 @@ class AgendaWidget extends StatefulWidget {
 
 class _AgendaWidgetState extends State<AgendaWidget> {
   late DateTime _selectedDate;
+  double _scrollOffset = 0.0;
 
   @override
   void initState() {
@@ -94,28 +125,71 @@ class _AgendaWidgetState extends State<AgendaWidget> {
   Widget build(BuildContext context) {
     var events = _filterEventsOnDay(widget.blocks, _selectedDate);
     return DragDownDateTimePicker(
+      alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
       initialDate: _selectedDate,
       pickTime: false,
       highlightToday: widget.highlightToday,
       header: widget.header,
-      onTapDay: (p0) {
+      onTapDay: (selected) {
+        widget.onTapDay?.call(selected);
         setState(() {
-          _selectedDate = p0;
+          _selectedDate = selected;
         });
+      },
+      onTimerPickerSheetChange: (p0) {
+        if (widget.updateEmptyChildPosition) {
+          setState(() {
+            _scrollOffset = p0 - widget.tableTopPadding;
+          });
+        }
       },
       disabledDates: widget.disabledDates,
       markedDates: widget.highlightedDates,
       dateTimePickerTheme: widget.theme.timePickerTheme,
-      child: Timetable(
-        scrollPhysics: widget.scrollPhysics,
-        scrollController: widget.scrollController,
-        blockColor: widget.blockColor,
-        startHour: widget.startHour,
-        endHour: widget.endHour,
-        timeBlocks: events,
-        theme: widget.theme.tableTheme,
-        combineBlocks: true,
-        mergeBlocks: true,
+      child: Column(
+        children: [
+          SizedBox(
+            height: widget.tableTopPadding,
+          ),
+          SizedBox(
+            height: (widget.size != null)
+                ? widget.size!.height - widget.tableTopPadding
+                : null,
+            width: (widget.size != null) ? widget.size!.width : null,
+            child: (widget.childIfEmptyRoster != null && events.isEmpty)
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // add empty space between the top of the widget
+                      //and the child if the datepicker is expanded
+                      SizedBox(
+                        height: _scrollOffset,
+                      ),
+                      widget.childIfEmptyRoster!,
+                    ],
+                  )
+                : Timetable(
+                    tableDirection: widget.tableDirection,
+                    scrollPhysics: widget.scrollPhysics,
+                    scrollController: widget.scrollController,
+                    blockColor: widget.blockColor,
+                    blockDimension: widget.blockDimension,
+                    hourDimension: widget.hourDimension,
+                    startHour: widget.startHour,
+                    endHour: widget.endHour,
+                    timeBlocks: events,
+                    theme: widget.theme.tableTheme,
+                    combineBlocks: true,
+                    mergeBlocks: true,
+                    size: (widget.size != null)
+                        ? Size(
+                            widget.size!.width,
+                            widget.size!.height - widget.tableTopPadding,
+                          )
+                        : null,
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -146,6 +220,7 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                     minute: e.end.minute,
                   ),
             id: e.id ?? 0,
+            childDimension: e.childDimension,
             child: e.content,
           ),
         )

@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:agenda/agenda.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_agenda/flutter_agenda.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -13,6 +13,7 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: AgendaWidget(
+            size: const Size(500, 500),
             header: Text('Agenda'),
             blocks: [],
           ),
@@ -30,6 +31,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: AgendaWidget(
+            size: const Size(500, 500),
             blocks: [
               AgendaEvent(
                 start: DateTime.now().subtract(const Duration(days: 3)),
@@ -66,6 +68,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: AgendaWidget(
+            size: const Size(500, 500),
             initialDate: DateTime.now(),
             blocks: [
               AgendaEvent(
