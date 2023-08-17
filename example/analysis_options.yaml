@@ -25,8 +25,6 @@ linter:
     empty_statements: true
     hash_and_equals: true
     invariant_booleans: true
-    iterable_contains_unrelated_type: true
-    list_remove_unrelated_type: true
     literal_only_boolean_expressions: true
     no_adjacent_strings_in_list: true
     no_duplicate_case_values: true
@@ -206,7 +204,6 @@ linter:
     void_checks: true
     # pub rules
     depend_on_referenced_packages: true
-    lowercase_with_underscores: true
     secure_pubspec_urls: false
     sort_pub_dependencies: false
 

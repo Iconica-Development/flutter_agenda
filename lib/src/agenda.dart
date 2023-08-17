@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_agenda/src/models/agenda_event.dart';
 import 'package:flutter_agenda/src/models/agenda_theme.dart';
 import 'package:flutter_date_time_picker/flutter_date_time_picker.dart';
-import 'package:timetable/timetable.dart';
+import 'package:flutter_timetable/timetable.dart';
 
 class AgendaWidget extends StatefulWidget {
   /// [AgendaWidget] is a widget that displays a timetable with events.

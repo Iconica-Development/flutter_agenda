@@ -1,6 +1,6 @@
 name: flutter_agenda
 description: Agenda widget with an underlying timetable included
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/Iconica-Development/flutter_agenda
 
 publish_to: none
@@ -16,10 +16,10 @@ dependencies:
     git:
       url: https://github.com/Iconica-Development/flutter_date_time_picker
       ref: 2.2.1
-  timetable:
+  flutter_timetable:
     git:
       url: https://github.com/Iconica-Development/flutter_timetable
-      ref: 1.0.0
+      ref: 1.1.0
 
 dev_dependencies:
   flutter_test:

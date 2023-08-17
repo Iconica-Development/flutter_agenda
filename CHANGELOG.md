@@ -1,3 +1,8 @@
+## [1.1.0] - 17 August 2023
+
+- Updated flutter_timetable to version 1.1.0
+- Updated flutter_date_time_picker to XXX
+
 ## [1.0.0] - 27 December 2022
 
 * Added option for custom Widget when there are no events for a given day
