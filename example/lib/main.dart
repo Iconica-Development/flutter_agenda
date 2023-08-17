@@ -23,7 +23,7 @@ class AgendaDemo extends StatelessWidget {
       body: AgendaWidget(
         header: Text(
           'Agenda',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         blockDimension: 50,
         highlightToday: false,

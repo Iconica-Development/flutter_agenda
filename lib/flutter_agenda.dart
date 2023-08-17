@@ -8,4 +8,4 @@ export 'package:flutter_agenda/src/agenda.dart';
 export 'package:flutter_agenda/src/models/agenda_event.dart';
 export 'package:flutter_agenda/src/models/agenda_theme.dart';
 
-export 'package:timetable/timetable.dart';
+export 'package:flutter_timetable/timetable.dart';
