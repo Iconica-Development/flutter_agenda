@@ -6,6 +6,9 @@ The underlying datepicker widget supports marking dates and disabling dates.
 
 ![Agenda GIF](agenda.gif)
 
+Figma Design that defines this component (only accessible for Iconica developers): https://www.figma.com/file/4WkjwynOz5wFeFBRqTHPeP/Iconica-Design-System?type=design&node-id=340%3A612&mode=design&t=XulkAJNPQ32ARxWh-1
+Figma clickable prototype that demonstrates this component (only accessible for Iconica developers): https://www.figma.com/proto/4WkjwynOz5wFeFBRqTHPeP/Iconica-Design-System?page-id=340%3A611&type=design&node-id=433-15620&viewport=-160%2C212%2C0.17&t=5fagYht1Mhp7ZCIJ-1&scaling=scale-down&starting-point-node-id=433%3A15620&show-proto-sidebar=1&mode=design
+
 Supports all Flutter platforms.
 
 ## Usage
