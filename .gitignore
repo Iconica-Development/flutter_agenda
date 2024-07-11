@@ -31,3 +31,7 @@ build/
 .metadata
 
 coverage/
+
+# FVM Version Cache
+.fvm/
+.fvmrc
