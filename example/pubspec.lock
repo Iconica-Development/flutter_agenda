@@ -68,15 +68,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.1.0"
+    version: "2.0.0"
   flutter_date_time_picker:
     dependency: transitive
     description:
-      path: "."
-      ref: "3.3.0"
-      resolved-ref: b217e0cb858be997181dedb6c07578ebb0e7fad1
-      url: "https://github.com/Iconica-Development/flutter_date_time_picker"
-    source: git
+      name: flutter_date_time_picker
+      sha256: d34231fae366fca3b14af3f810d750d56cb282a56e4721470d65074b1fbce969
+      url: "https://forgejo.internal.iconica.nl/api/packages/internal/pub/"
+    source: hosted
     version: "3.3.0"
   flutter_lints:
     dependency: "direct dev"
@@ -94,12 +93,11 @@ packages:
   flutter_timetable:
     dependency: transitive
     description:
-      path: "."
-      ref: "1.1.0"
-      resolved-ref: "528dc5c2408e12ffa641706aa4466ae650fc2275"
-      url: "https://github.com/Iconica-Development/flutter_timetable"
-    source: git
-    version: "1.1.0"
+      name: flutter_timetable
+      sha256: "86eb6709133f179ea4d9f338a95630a43a4d03f9dc86719622c17970fb8a0655"
+      url: "https://forgejo.internal.iconica.nl/api/packages/internal/pub/"
+    source: hosted
+    version: "2.0.0"
   intl:
     dependency: transitive
     description:
