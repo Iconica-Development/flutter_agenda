@@ -1,3 +1,7 @@
+## [2.0.0] - 11 July 2024
+
+- Upgrade to flutter_timetable 2.0.0
+
 ## [1.1.0] - 17 August 2023
 
 - Updated flutter_timetable to version 1.1.0
